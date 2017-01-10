@@ -1,0 +1,68 @@
+So, using the video game Transistor as an example in this, I will go through and change some of the variables that make up some of
+the various enemies and weapons. I will first show how the code was before, and then after, I have touched it up. 
+By doing this, I can change how difficult or easy the game will be. I can also stress test to see what could cause crashes, and see the
+varitable limitations of what can be processed.
+
+	<Weapon
+		Name="Slam"
+		InheritFrom="1_BasePlayerWeapon"
+		Type="GUN"
+		GenericHelpTextId="Slam_Generic"
+		UpgradeHelpTextId="Slam_Generic_Upgrade"
+		BioHelpTextId="Slam_Bio"
+		BioTwoHelpTextId="Slam_Bio_2"
+		BioThreeHelpTextId="Slam_Bio_3"
+		BioFourHelpTextId="Slam_Bio_4"
+		Portrait="GUI\\Portraits\\inspect_portrait_01"
+		DisableOwnerForDuration="0.4"
+		Cooldown="0.45"
+        ChargeTime="0.5"
+		ArsenalCooldown="0.0"
+		ChargeGraphic="MuseCharge"
+		Graphic="MuseFire"
+        IdleGraphic="MuseReturnToIdle"
+		ChargeSound="/SFX/Player Sounds/Weapon_Slam_Charge"
+    OnWeaponChargingSound1="/SFX/Player Sounds/Vocalizations/Muse_Attack_Pull"
+    OnWeaponChargingSound1Chance="0.3"
+    OnWeaponChargingSound2="/SFX/Player Sounds/Vocalizations/Muse_Emote_Charge_Quick"
+		FireSound="/SFX/Player Sounds/Weapon_Slam_Fire2"
+		FireSound2="SFX/Player Sounds/Vocalizations/Muse_Attack_Light"
+		Projectile="Slam"
+		Spread="0"
+		BarrelLength="30"
+		Icon="GUI\\Icons\\Powers\\power_slam01"
+		NumProjectiles="1"
+		ProjectileAngleOffset="0"
+		RootOwnerWhileFiring="true"
+		RequiresTarget="false"
+		CancelMovement="true"
+		FullyAutomatic="false"
+		StaminaCost="20"
+		Cost="1"
+		SimulationSlowFrames="30"
+		ObstacleDamageMultiplier="1.0"
+		AutoLockRange="250"
+		AutoLockArcDistance="120"
+		ExecuteCooldown="0.0"
+		ClearUpgrade="Slam, ClusterbombGP, Blink, Jumper, Tracker"
+    
+    
+    
+    
+    This, being the base "vanilla" code for the attack you can use from the start of the game, shows the variables for such things as
+      -Damage
+      -Charge Time
+      -Projectile count and spread
+      -ETC
+    It also has the file paths for the animations and sounds used while using it. Personally I do not have any other files or know how
+    to change this file path or what could be used other than the norm.
+    Now, let's say we want to have this have more than the 1 projectile it already has, and then adjust it so it is more of a "Cone" 
+    effect I would take these lines and change them as such:
+    
+    NumProjectiles="5"
+    ProjectileAngleOffset="25"
+    
+    Now the ingame attack "Crash" is a fan of 5 projectiles in a short distance attack. Depending on user, the variables for StaminaCost
+    can be either increased or decreased, in case you want easy mode or hard mode. A lower StaminaCost variable will allow it to be used
+    more in a sequence than if you have a higher variable. If set to 0, it can be used an infinite number of times (which could also 
+    lead to an over flow of data variables) or it can be increased, thus making it a more "balanced" in some views.
